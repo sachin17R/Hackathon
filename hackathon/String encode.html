@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="D:\starmark\jquerylibrary.min.js"></script>
+    <script>
+        
+        $().ready(start)
+        var output="";
+        var simple="";
+        var output1 ="";
+        function start() {
+            $("#encriptbtn").click(fetching)
+        }
+
+        function fetching() {
+            document.querySelector("#pDisplay").innerHTML = ""
+            const input = ($("#txt").val()).toLowerCase();
+            for (let k = 0; k < input.length; k++) {
+                const letter = input[k];
+                if(letter == (" ")){
+                    for(let i=0;i<output.length-1;i++){
+                       simple += output[i];
+                    }
+                    output = simple
+                    console.log(output)
+                    output += "-"
+                    simple ="";
+                }else{
+                    encripting(letter);
+                    output +=","
+                }
+            }
+            for(let i=0;i<output.length-1;i++){
+                       output1 += output[i];
+                    }
+        document.querySelector("#pDisplay").innerHTML = output1
+        clearfunc()
+        }
+
+        function clearfunc(){
+            output1 =""
+            output ="";
+            $("#txt").val("")
+
+        }
+
+        function encripting(id) {
+
+            array1 = ["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"];
+            for (let i = 0; i < array1.length; i++) {
+                const word = array1[i];
+                const wordArray = word.split('')
+                for (let j = 0; j < wordArray.length; j++) {
+                    if (id == wordArray[j]) {
+                        const enc = i + "" + j;
+                        // console.log(enc);
+                        output += enc ;
+                        return
+                    }
+                }
+            }
+        }
+
+        
+
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1>String Encrypting Software</h1>
+        <hr>
+
+        String: <input type="text" id="txt" placeholder="enter string">
+        <br><br>
+        <button id="encriptbtn">ecript</button>
+
+        <p id="pDisplay"></p>
+
+
+
+    </center>
+</body>
+
+</html>
